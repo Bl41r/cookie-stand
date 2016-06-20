@@ -3,7 +3,8 @@
 // GitHub: https://github.com/Bl41r/cookie-stand
 /////////////////////////////////////////////////////
 
-var hours_open = 14;
+var hoursOpen = 14;
+var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 // Function from mdn
 function getRandomIntInclusive(min, max) {
@@ -23,7 +24,7 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
   var hourlyCustomers = [];
   for (var i = 0; i < hours; i++) {
     hourlyCustomers[i] = getRandomIntInclusive(min, max);
-    dailySales[i] = hourlyCustomers[i] * avgCookiePerSale;
+    dailySales[i] = Math.round(hourlyCustomers[i] * avgCookiePerSale);
   }
   return [hourlyCustomers, dailySales];
 };
@@ -123,13 +124,13 @@ function displayData(locations) {
     newTag.innerText = locations[i].name;  //<ul id="Alki"></ul>
     dataEntryPoint = document.getElementById('DataStart');
     dataEntryPoint.appendChild(newTag); //adds newTag to div in html
-    for (var j = 0; j < hours_open; j++) {  //loop thru each hour for the location object
+    for (var j = 0; j < hoursOpen; j++) {  //loop thru each hour for the location object
       var item = document.createElement('li');
-      item.innerText = locations[i].dailySales[j]; //item contains the cookies sold for an hour
+      item.innerText = hourNames[j] + ': ' + locations[i].dailySales[j] + ' cookies'; //item contains the cookies sold for an hour
       newTag.appendChild(item);
     }
     var total = document.createElement('li');
-    total.innerText = ('Total is: ' + sumArray(locations[i].dailySales));
+    total.innerText = ('Total: ' + sumArray(locations[i].dailySales) + ' cookies');
     newTag.appendChild(total);
   }
 };
