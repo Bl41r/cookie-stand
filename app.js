@@ -129,7 +129,7 @@ function displayData(locations) {
       newTag.appendChild(item);
     }
     var total = document.createElement('li');
-    total.innerText = ('Total is: ' + sumArray[locations]);
+    total.innerText = ('Total is: ' + sumArray(locations[i].dailySales));
     newTag.appendChild(total);
   }
 };
