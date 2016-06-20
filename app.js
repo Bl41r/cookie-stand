@@ -3,6 +3,8 @@
 // GitHub: https://github.com/Bl41r/cookie-stand
 /////////////////////////////////////////////////////
 
+var hours_open = 14;
+
 // Function from mdn
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -13,6 +15,7 @@ function sumArray(list) {
   for (var i = 0; i < list.length; i++) {
     sum += list[i];
   }
+  return sum;
 }
 
 function getDailySales(hours, min, max, avgCookiePerSale) {
@@ -27,7 +30,7 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
 
 function compoundSalesData() {
   FirstAndPike.getDailySales();
-  Seatac.getDailySales();
+  SeaTac.getDailySales();
   SeattleCenter.getDailySales();
   CapHill.getDailySales();
   Alki.getDailySales();
@@ -55,7 +58,8 @@ var SeaTac = {
   min: 3,
   max: 24,
   avgCookiesPerSale: 1.2,
-  dailySales: []
+  dailySales: [],
+  hourlyCustomers: []
 };
 
 SeaTac.getDailySales = function() {
@@ -69,7 +73,8 @@ var SeattleCenter = {
   min: 11,
   max: 38,
   avgCookiesPerSale: 3.7,
-  dailySales: []
+  dailySales: [],
+  hourlyCustomers: []
 };
 
 SeattleCenter.getDailySales = function() {
@@ -83,7 +88,8 @@ var CapHill = {
   min: 20,
   max: 38,
   avgCookiesPerSale: 2.3,
-  dailySales: []
+  dailySales: [],
+  hourlyCustomers: []
 };
 
 CapHill.getDailySales = function() {
@@ -97,26 +103,42 @@ var Alki = {
   min: 2,
   max: 16,
   avgCookiesPerSale: 4.6,
-  dailySales: []
+  dailySales: [],
+  hourlyCustomers: []
 };
 
 Alki.getDailySales = function() {
   SalesData = getDailySales(14, Alki.min, Alki.max, Alki.avgCookiesPerSale);
-  Alki.hourlyCUstomers = SalesData[0];
+  Alki.hourlyCustomers = SalesData[0];
   Alki.dailySales = SalesData[1];
 };
 
-Locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
+open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 
-function displayData(location) {
-  //make new name property in Objects first
-  //then in here create element ul, then li children
-}
+function displayData(locations) {
+//todo: in here create element ul, then li children
+  for (var i = 0; i < locations.length; i++) {
+    newTag = document.createElement('ul');
+    newTag.setAttribute('id', locations[i].name);
+    newTag.innerText = locations[i].name;  //<ul id="Alki"></ul>
+    dataEntryPoint = document.getElementById('DataStart');
+    dataEntryPoint.appendChild(newTag); //adds newTag to div in html
+    for (var j = 0; j < hours_open; j++) {  //loop thru each hour for the location object
+      var item = document.createElement('li');
+      item.innerText = locations[i].dailySales[j]; //item contains the cookies sold for an hour
+      newTag.appendChild(item);
+    }
+    var total = document.createElement('li');
+    total.innerText = ('Total is: ' + sumArray[locations]);
+    newTag.appendChild(total);
+  }
+};
 
 ///////////////////////////////
 // Main programming loop
 ///////////////////////////////
 //  1. Compound Sales Data
-//  2. Display on sales.html for each location by creating ul, then child li for each value
+//  2. Display on sales.html for each location by creating a new ul, then child li for each value
 
 compoundSalesData();
+displayData(open_locations);
