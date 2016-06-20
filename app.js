@@ -114,8 +114,6 @@ Alki.getDailySales = function() {
   Alki.dailySales = SalesData[1];
 };
 
-open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
-
 function displayData(locations) {
 //todo: in here create element ul, then li children
   for (var i = 0; i < locations.length; i++) {
@@ -129,7 +127,7 @@ function displayData(locations) {
       item.innerText = hourNames[j] + ': ' + locations[i].dailySales[j] + ' cookies'; //item contains the cookies sold for an hour
       newTag.appendChild(item);
     }
-    var total = document.createElement('li');
+    var total = document.createElement('li'); //puts the total as bottom item on list
     total.innerText = ('Total: ' + sumArray(locations[i].dailySales) + ' cookies');
     newTag.appendChild(total);
   }
@@ -140,6 +138,7 @@ function displayData(locations) {
 ///////////////////////////////
 //  1. Compound Sales Data
 //  2. Display on sales.html for each location by creating a new ul, then child li for each value
+open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 
 compoundSalesData();
 displayData(open_locations);
