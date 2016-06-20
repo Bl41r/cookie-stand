@@ -115,7 +115,6 @@ Alki.getDailySales = function() {
 };
 
 function displayData(locations) {
-//todo: in here create element ul, then li children
   for (var i = 0; i < locations.length; i++) {
     newTag = document.createElement('ul');
     newTag.setAttribute('id', locations[i].name);
