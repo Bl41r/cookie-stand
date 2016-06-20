@@ -25,7 +25,17 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
   return [hourlyCustomers, dailySales];
 };
 
+function compoundSalesData() {
+  FirstAndPike.getDailySales();
+  Seatac.getDailySales();
+  SeattleCenter.getDailySales();
+  CapHill.getDailySales();
+  Alki.getDailySales();
+}
+
+// Objects
 var FirstAndPike = {
+  name: 'First And Pike',
   min: 23,
   max: 65,
   avgCookiesPerSale: 6.3,
@@ -41,6 +51,7 @@ FirstAndPike.getDailySales = function() {
 };
 
 var SeaTac = {
+  name: 'SeaTac Airport',
   min: 3,
   max: 24,
   avgCookiesPerSale: 1.2,
@@ -54,6 +65,7 @@ SeaTac.getDailySales = function() {
 };
 
 var SeattleCenter = {
+  name: 'Seattle Center',
   min: 11,
   max: 38,
   avgCookiesPerSale: 3.7,
@@ -67,6 +79,7 @@ SeattleCenter.getDailySales = function() {
 };
 
 var CapHill = {
+  name: 'Capitol Hill',
   min: 20,
   max: 38,
   avgCookiesPerSale: 2.3,
@@ -80,6 +93,7 @@ CapHill.getDailySales = function() {
 };
 
 var Alki = {
+  name: 'Alki',
   min: 2,
   max: 16,
   avgCookiesPerSale: 4.6,
@@ -91,3 +105,18 @@ Alki.getDailySales = function() {
   Alki.hourlyCUstomers = SalesData[0];
   Alki.dailySales = SalesData[1];
 };
+
+Locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
+
+function displayData(location) {
+  //make new name property in Objects first
+  //then in here create element ul, then li children
+}
+
+///////////////////////////////
+// Main programming loop
+///////////////////////////////
+//  1. Compound Sales Data
+//  2. Display on sales.html for each location by creating ul, then child li for each value
+
+compoundSalesData();
