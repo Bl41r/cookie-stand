@@ -75,12 +75,46 @@ function displayDataList(locations) {
   }
 };
 
-///////////////////////////////
+function displayDataTable(locations) {
+  //make table with id
+  var tableEl = document.createElement('table');
+  tableEl.setAttribute('id', 'dataTable');
+  dataEntryPoint = document.getElementById('DataStart');
+  dataEntryPoint.appendChild(tableEl);
+  //add first tr within table
+  trEl = document.createElement('tr');
+  trEl.setAttribute('id', 'currentRow');
+  dataEntryPoint = document.getElementById('dataTable');
+  dataEntryPoint.appendChild(trEl);
+  //add th's within tr
+  thEl = document.createElement('th');
+  thEl.innerText = '(blank space here)';
+  thEl.setAttribute('id', 'currentHeading');
+  dataEntryPoint = document.getElementById('currentRow');
+  dataEntryPoint.appendChild(thEl);
+  thEl.removeAttribute('id');
+  //add daily total column heading
+  thEl = document.createElement('th');
+  thEl.innerText = 'Daily Location Total';
+  thEl.setAttribute('id', 'currentHeading');
+  dataEntryPoint = document.getElementById('currentRow');
+  dataEntryPoint.appendChild(thEl);
+  thEl.removeAttribute('id');
+  //loop to add remaining headings based on hourNames
+  for (i = 0; i < hourNames.length; i++) {
+    thEl = document.createElement('th');
+    thEl.innerText = hourNames[i];
+    thEl.setAttribute('id', 'currentHeading');
+    dataEntryPoint = document.getElementById('currentRow');
+    dataEntryPoint.appendChild(thEl);
+    thEl.removeAttribute('id');
+  }
+};
+
 // Main programming loop
 ///////////////////////////////
-//  1. Compound Sales Data
-//  2. Display on sales.html for each location by creating a new ul, then child li for each value
 createStores();
 open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 compoundSalesData(open_locations);
-displayDataList(open_locations);
+//displayDataList(open_locations);
+displayDataTable(open_locations);
