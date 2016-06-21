@@ -37,81 +37,29 @@ function compoundSalesData(locations) {
 }
 
 // Objects
-var FirstAndPike = {
-  name: 'First And Pike',
-  min: 23,
-  max: 65,
-  avgCookiesPerSale: 6.3,
-  dailySales: [],
-  hourlyCustomers: []
+var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+  this.dailySales = [];
+  this.hourlyCustomers = [];
+
+  this.getDailySales = function() {
+    var SalesData = [];
+    SalesData = getDailySales(hoursOpen, this.minCust, this.maxCust, this.avgCookiesPerSale);
+    this.hourlyCustomers = SalesData[0];
+    this.dailySales = SalesData[1];
+  };
 };
 
-FirstAndPike.getDailySales = function() {
-  SalesData = [];
-  SalesData = getDailySales(hoursOpen, FirstAndPike.min, FirstAndPike.max, FirstAndPike.avgCookiesPerSale);
-  FirstAndPike.hourlyCustomers = SalesData[0];
-  FirstAndPike.dailySales = SalesData[1];
-};
-
-var SeaTac = {
-  name: 'SeaTac Airport',
-  min: 3,
-  max: 24,
-  avgCookiesPerSale: 1.2,
-  dailySales: [],
-  hourlyCustomers: []
-};
-
-SeaTac.getDailySales = function() {
-  SalesData = getDailySales(hoursOpen, SeaTac.min, SeaTac.max, SeaTac.avgCookiesPerSale);
-  SeaTac.hourlyCustomers = SalesData[0];
-  SeaTac.dailySales = SalesData[1];
-};
-
-var SeattleCenter = {
-  name: 'Seattle Center',
-  min: 11,
-  max: 38,
-  avgCookiesPerSale: 3.7,
-  dailySales: [],
-  hourlyCustomers: []
-};
-
-SeattleCenter.getDailySales = function() {
-  SalesData = getDailySales(hoursOpen, SeattleCenter.min, SeattleCenter.max, SeattleCenter.avgCookiesPerSale);
-  SeattleCenter.hourlyCustomers = SalesData[0];
-  SeattleCenter.dailySales = SalesData[1];
-};
-
-var CapHill = {
-  name: 'Capitol Hill',
-  min: 20,
-  max: 38,
-  avgCookiesPerSale: 2.3,
-  dailySales: [],
-  hourlyCustomers: []
-};
-
-CapHill.getDailySales = function() {
-  SalesData = getDailySales(hoursOpen, CapHill.min, CapHill.max, CapHill.avgCookiesPerSale);
-  CapHill.hourlyCustomers = SalesData[0];
-  CapHill.dailySales = SalesData[1];
-};
-
-var Alki = {
-  name: 'Alki',
-  min: 2,
-  max: 16,
-  avgCookiesPerSale: 4.6,
-  dailySales: [],
-  hourlyCustomers: []
-};
-
-Alki.getDailySales = function() {
-  SalesData = getDailySales(hoursOpen, Alki.min, Alki.max, Alki.avgCookiesPerSale);
-  Alki.hourlyCustomers = SalesData[0];
-  Alki.dailySales = SalesData[1];
-};
+function createStores() {
+  FirstAndPike = new Store('First and Pike', 23, 65, 6.3);
+  SeaTac = new Store('SeaTac Airport', 3, 24, 1.2);
+  SeattleCenter = new Store('Seattle Center', 11, 38, 3.7);
+  CapHill = new Store('Capitol Hill', 20, 38, 2.3);
+  Alki = new Store('Alki', 2, 16, 4.6);
+}
 
 function displayData(locations) {
   for (var i = 0; i < locations.length; i++) {
@@ -136,7 +84,7 @@ function displayData(locations) {
 ///////////////////////////////
 //  1. Compound Sales Data
 //  2. Display on sales.html for each location by creating a new ul, then child li for each value
+createStores();
 open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
-
 compoundSalesData(open_locations);
 displayData(open_locations);
