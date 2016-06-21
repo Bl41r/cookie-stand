@@ -93,14 +93,13 @@ function displayDataTable(locations) {
     tableEl.appendChild(trEl);
     //add in dailySales[j] (each hours sales for a store)
     for (var j = 0; j < open_locations[i].dailySales.length; j++) {
-      var thEl = document.createElement('th');
-      thEl.innerText = String(open_locations[i].dailySales[j]);
-      trEl.appendChild(thEl);
+      var tdEl = document.createElement('td');
+      tdEl.innerText = String(open_locations[i].dailySales[j]);
+      trEl.appendChild(tdEl);
     }
     tableEl.appendChild(trEl);
   }
-  //todo:  add bottom row with totals
-  //calc totals, put each row element into an array, display it on table
+  //calc totals row
   totalsRow = [];
   totalsRow[0] = 0;
   for (t = 0; t < open_locations.length; t++) {
