@@ -3,8 +3,9 @@
 // GitHub: https://github.com/Bl41r/cookie-stand
 /////////////////////////////////////////////////////
 
-var hoursOpen = 14;
-var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+//note:  8pm removed, because stores close at 8, and thus no sales after close
+var hoursOpen = hourNames.length;
 
 // Function from mdn
 function getRandomIntInclusive(min, max) {
@@ -29,12 +30,10 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
   return [hourlyCustomers, dailySales];
 };
 
-function compoundSalesData() {
-  FirstAndPike.getDailySales();
-  SeaTac.getDailySales();
-  SeattleCenter.getDailySales();
-  CapHill.getDailySales();
-  Alki.getDailySales();
+function compoundSalesData(locations) {
+  for (var loc = 0; loc < locations.length; loc++) {
+    locations[loc].getDailySales();
+  }
 }
 
 // Objects
@@ -49,7 +48,7 @@ var FirstAndPike = {
 
 FirstAndPike.getDailySales = function() {
   SalesData = [];
-  SalesData = getDailySales(14, FirstAndPike.min, FirstAndPike.max, FirstAndPike.avgCookiesPerSale);
+  SalesData = getDailySales(hoursOpen, FirstAndPike.min, FirstAndPike.max, FirstAndPike.avgCookiesPerSale);
   FirstAndPike.hourlyCustomers = SalesData[0];
   FirstAndPike.dailySales = SalesData[1];
 };
@@ -64,7 +63,7 @@ var SeaTac = {
 };
 
 SeaTac.getDailySales = function() {
-  SalesData = getDailySales(14, SeaTac.min, SeaTac.max, SeaTac.avgCookiesPerSale);
+  SalesData = getDailySales(hoursOpen, SeaTac.min, SeaTac.max, SeaTac.avgCookiesPerSale);
   SeaTac.hourlyCustomers = SalesData[0];
   SeaTac.dailySales = SalesData[1];
 };
@@ -79,7 +78,7 @@ var SeattleCenter = {
 };
 
 SeattleCenter.getDailySales = function() {
-  SalesData = getDailySales(14, SeattleCenter.min, SeattleCenter.max, SeattleCenter.avgCookiesPerSale);
+  SalesData = getDailySales(hoursOpen, SeattleCenter.min, SeattleCenter.max, SeattleCenter.avgCookiesPerSale);
   SeattleCenter.hourlyCustomers = SalesData[0];
   SeattleCenter.dailySales = SalesData[1];
 };
@@ -94,7 +93,7 @@ var CapHill = {
 };
 
 CapHill.getDailySales = function() {
-  SalesData = getDailySales(14, CapHill.min, CapHill.max, CapHill.avgCookiesPerSale);
+  SalesData = getDailySales(hoursOpen, CapHill.min, CapHill.max, CapHill.avgCookiesPerSale);
   CapHill.hourlyCustomers = SalesData[0];
   CapHill.dailySales = SalesData[1];
 };
@@ -109,7 +108,7 @@ var Alki = {
 };
 
 Alki.getDailySales = function() {
-  SalesData = getDailySales(14, Alki.min, Alki.max, Alki.avgCookiesPerSale);
+  SalesData = getDailySales(hoursOpen, Alki.min, Alki.max, Alki.avgCookiesPerSale);
   Alki.hourlyCustomers = SalesData[0];
   Alki.dailySales = SalesData[1];
 };
@@ -139,5 +138,5 @@ function displayData(locations) {
 //  2. Display on sales.html for each location by creating a new ul, then child li for each value
 open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 
-compoundSalesData();
+compoundSalesData(open_locations);
 displayData(open_locations);
