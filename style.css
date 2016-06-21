@@ -1,0 +1,27 @@
+div {
+  display:block;
+  float:left;
+}
+
+#container {
+  width: 960px;
+  height:1000px;
+  background: grey;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.left {
+  width: 800px;
+}
+
+.top {
+  height: 100px;
+  background: yellow;
+}
+
+.right {
+  width: 160px;
+  height: 100%;
+  background: red;
+}
