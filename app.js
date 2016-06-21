@@ -76,18 +76,17 @@ function displayDataList(locations) {
 };
 
 function displayDataTable(locations) {
-  //make table with id
+  //make table with id of dataTable
   var tableEl = document.createElement('table');
   tableEl.setAttribute('id', 'dataTable');
   dataEntryPoint = document.getElementById('DataStart');
   dataEntryPoint.appendChild(tableEl);
   //add first tr within table
   trEl = document.createElement('tr');
-  trEl.setAttribute('id', 'currentRow');
   tableEl.appendChild(trEl);
   //add th's within tr
   thEl = document.createElement('th');
-  thEl.innerText = '(blank space here)';
+  // thEl.innerText = '(blank space here)';
   trEl.appendChild(thEl);
   //add daily total column heading
   thEl = document.createElement('th');
@@ -100,6 +99,25 @@ function displayDataTable(locations) {
     trEl.appendChild(thEl);
   }
   //first row done, now loops for all locs
+  for (var i = 0; i < open_locations.length; i++) {
+    var trEl = document.createElement('tr');
+    trEl.setAttribute('id', 'currentRow');
+    var thEl = document.createElement('th');
+    thEl.innerText = open_locations[i].name;
+    trEl.appendChild(thEl);
+    //add total
+    thEl = document.createElement('th');
+    thEl.innerText = String(open_locations[i].total);
+    trEl.appendChild(thEl);
+    tableEl.appendChild(trEl);
+    //add in dailySales[j] (each hours sales for a store)
+    for (var j = 0; j < open_locations[i].dailySales.length; j++) {
+      var thEl = document.createElement('th');
+      thEl.innerText = String(open_locations[i].dailySales[j]);
+      trEl.appendChild(thEl);
+    }
+    tableEl.appendChild(trEl);
+  }
 };
 
 // Main programming loop
