@@ -12,22 +12,16 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function sumArray(list) {
-  var sum = 0;
-  for (var i = 0; i < list.length; i++) {
-    sum += list[i];
-  }
-  return sum;
-}
-
 function getDailySales(hours, min, max, avgCookiePerSale) {
+  var total = 0;
   var dailySales = [];
   var hourlyCustomers = [];
   for (var i = 0; i < hours; i++) {
     hourlyCustomers[i] = getRandomIntInclusive(min, max);
     dailySales[i] = Math.round(hourlyCustomers[i] * avgCookiePerSale);
+    total += dailySales[i];
   }
-  return [hourlyCustomers, dailySales];
+  return [hourlyCustomers, dailySales, total];
 };
 
 function compoundSalesData(locations) {
@@ -44,12 +38,14 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
   this.avgCookiesPerSale = avgCookiesPerSale;
   this.dailySales = [];
   this.hourlyCustomers = [];
+  this.total = 0;
 
   this.getDailySales = function() {
     var SalesData = [];
     SalesData = getDailySales(hoursOpen, this.minCust, this.maxCust, this.avgCookiesPerSale);
     this.hourlyCustomers = SalesData[0];
     this.dailySales = SalesData[1];
+    this.total = SalesData[2];
   };
 };
 
@@ -61,7 +57,7 @@ function createStores() {
   Alki = new Store('Alki', 2, 16, 4.6);
 }
 
-function displayData(locations) {
+function displayDataList(locations) {
   for (var i = 0; i < locations.length; i++) {
     newTag = document.createElement('ul');
     newTag.setAttribute('id', locations[i].name);
@@ -74,7 +70,7 @@ function displayData(locations) {
       newTag.appendChild(item);
     }
     var total = document.createElement('li'); //puts the total as bottom item on list
-    total.innerText = ('Total: ' + sumArray(locations[i].dailySales) + ' cookies');
+    total.innerText = ('Total: ' + locations[i].total + ' cookies');
     newTag.appendChild(total);
   }
 };
@@ -87,4 +83,4 @@ function displayData(locations) {
 createStores();
 open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 compoundSalesData(open_locations);
-displayData(open_locations);
+displayDataList(open_locations);
