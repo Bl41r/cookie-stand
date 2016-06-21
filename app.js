@@ -57,24 +57,6 @@ function createStores() {
   Alki = new Store('Alki', 2, 16, 4.6);
 }
 
-function displayDataList(locations) {
-  for (var i = 0; i < locations.length; i++) {
-    newTag = document.createElement('ul');
-    newTag.setAttribute('id', locations[i].name);
-    newTag.innerText = locations[i].name;  //<ul id="Alki"></ul>
-    dataEntryPoint = document.getElementById('DataStart');
-    dataEntryPoint.appendChild(newTag); //adds newTag to div in html
-    for (var j = 0; j < hoursOpen; j++) {  //loop thru each hour for the location object
-      var item = document.createElement('li');
-      item.innerText = hourNames[j] + ': ' + locations[i].dailySales[j] + ' cookies'; //item contains the cookies sold for an hour
-      newTag.appendChild(item);
-    }
-    var total = document.createElement('li'); //puts the total as bottom item on list
-    total.innerText = ('Total: ' + locations[i].total + ' cookies');
-    newTag.appendChild(total);
-  }
-};
-
 function displayDataTable(locations) {
   //make table with id of dataTable
   var tableEl = document.createElement('table');
@@ -101,14 +83,13 @@ function displayDataTable(locations) {
   //first row done, now loops for all locs
   for (var i = 0; i < open_locations.length; i++) {
     var trEl = document.createElement('tr');
-    trEl.setAttribute('id', 'currentRow');
     var thEl = document.createElement('th');
     thEl.innerText = open_locations[i].name;
     trEl.appendChild(thEl);
     //add total
-    thEl = document.createElement('th');
-    thEl.innerText = String(open_locations[i].total);
-    trEl.appendChild(thEl);
+    tdEl = document.createElement('td');
+    tdEl.innerText = String(open_locations[i].total);
+    trEl.appendChild(tdEl);
     tableEl.appendChild(trEl);
     //add in dailySales[j] (each hours sales for a store)
     for (var j = 0; j < open_locations[i].dailySales.length; j++) {
@@ -118,12 +99,38 @@ function displayDataTable(locations) {
     }
     tableEl.appendChild(trEl);
   }
+  //todo:  add bottom row with totals
+  //calc totals, put each row element into an array, display it on table
+  totalsRow = [];
+  totalsRow[0] = 0;
+  for (t = 0; t < open_locations.length; t++) {
+    totalsRow[0] += open_locations[t].total;
+  }
+  for (var k = 0; k < hourNames.length; k++) {
+    var hourTotal = 0;
+    for (var l = 0; l < open_locations.length; l++) {
+      hourTotal += open_locations[l].dailySales[k];
+    }
+    totalsRow.push(hourTotal);
+  }
+  //display totals row
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.innerText = 'Totals';
+  trEl.appendChild(thEl);
+  thEl = document.createElement('td');
+  thEl.innerText = String(totalsRow[0]);
+  trEl.appendChild(thEl);
+  for (var i = 1; i < totalsRow.length; i++) {
+    var tdEl = document.createElement('td');
+    tdEl.innerText = totalsRow[i];
+    trEl.appendChild(tdEl);
+  }
+  tableEl.appendChild(trEl);
 };
 
 // Main programming loop
-///////////////////////////////
-createStores();
+createStores(); //later: generate stores from an array of data at top
 open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
 compoundSalesData(open_locations);
-//displayDataList(open_locations);
 displayDataTable(open_locations);
