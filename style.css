@@ -1,12 +1,37 @@
+/* Master stylesheet kind of resetting here */
+* {
+/*  outline: 1px dotted orange; */
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body {
+    height:100%;
+}
+
+h1 h2 h3 h4 h5 h6 {
+  margin: 0px;
+  padding 0px;
+  font-weight: normal;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+}
+/*-----------------------------------*/
+
 div {
   display:block;
   float:left;
 }
 
 #container {
+  position: absolute;
   width: 960px;
-  height:1000px;
-  background: grey;
+  background: red;  /* set to same color as .right to maintain right bar */
   margin-right: auto;
   margin-left: auto;
 }
@@ -16,12 +41,51 @@ div {
 }
 
 .top {
-  height: 100px;
-  background: yellow;
+  height: auto;
+  background: #fff85c;
 }
 
 .right {
   width: 160px;
   height: 100%;
   background: red;
+  text-align: center;
+  display: table;
+}
+
+.bottom {
+  height: 100%;
+  background: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.spacer {
+  height: 50px;
+  width: 800px;
+}
+
+ul.locations p {
+  margin-bottom: 50px;
+  font-weight: normal;
+  font-size: 14pt;
+  font-style: italic;
+}
+
+ul.locations li {
+  font-weight: bold;
+  font-size: 14pt;
+  list-style-type: none;
+}
+
+ul.locations {
+  margin-top: 20px;
+  font-weight: bolder;
+  font-size: 20pt;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
