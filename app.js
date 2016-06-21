@@ -84,31 +84,22 @@ function displayDataTable(locations) {
   //add first tr within table
   trEl = document.createElement('tr');
   trEl.setAttribute('id', 'currentRow');
-  dataEntryPoint = document.getElementById('dataTable');
-  dataEntryPoint.appendChild(trEl);
+  tableEl.appendChild(trEl);
   //add th's within tr
   thEl = document.createElement('th');
   thEl.innerText = '(blank space here)';
-  thEl.setAttribute('id', 'currentHeading');
-  dataEntryPoint = document.getElementById('currentRow');
-  dataEntryPoint.appendChild(thEl);
-  thEl.removeAttribute('id');
+  trEl.appendChild(thEl);
   //add daily total column heading
   thEl = document.createElement('th');
   thEl.innerText = 'Daily Location Total';
-  thEl.setAttribute('id', 'currentHeading');
-  dataEntryPoint = document.getElementById('currentRow');
-  dataEntryPoint.appendChild(thEl);
-  thEl.removeAttribute('id');
+  trEl.appendChild(thEl);
   //loop to add remaining headings based on hourNames
-  for (i = 0; i < hourNames.length; i++) {
+  for (var i = 0; i < hourNames.length; i++) {
     thEl = document.createElement('th');
     thEl.innerText = hourNames[i];
-    thEl.setAttribute('id', 'currentHeading');
-    dataEntryPoint = document.getElementById('currentRow');
-    dataEntryPoint.appendChild(thEl);
-    thEl.removeAttribute('id');
+    trEl.appendChild(thEl);
   }
+  //first row done, now loops for all locs
 };
 
 // Main programming loop
