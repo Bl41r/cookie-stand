@@ -24,7 +24,7 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
   this.total = 0;
 
   // Methods
-  this.getDailySales = function() { // method gets sales data for one day
+  this.getDailySales = function() { // method gets sales data for one day, stores in properties
     var SalesData = [];
     SalesData = getDailySales(hourNames.length, this.minCust, this.maxCust, this.avgCookiesPerSale);
     this.hourlyCustomers = SalesData[0];
@@ -33,20 +33,7 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
   };
 
   this.renderData = function() {  // method appends one row to data table in HTML
-    var tableEl = document.getElementById('DataTable');
-    var trEl = document.createElement('tr');
-    var thEl = document.createElement('th');
-    thEl.innerText = this.name;
-    trEl.appendChild(thEl);
-    var tdElTotal = document.createElement('td'); //appends store daily total
-    tdElTotal.innerText = this.total;
-    trEl.appendChild(tdElTotal);
-    for (var i = 0; i < this.dailySales.length; i++) {  // appends hourly totals
-      var tdEl = document.createElement('td');
-      tdEl.innerText = String(this.dailySales[i]);
-      trEl.appendChild(tdEl);
-    }
-    tableEl.appendChild(trEl);
+    renderRow(this);
   };
 };
 // Global Functions
@@ -72,6 +59,23 @@ function compoundSalesData(locations) {
     locations[loc].getDailySales();
   }
 }
+//used by Store.Data() method
+function renderRow(StoreObj) {
+  var tableEl = document.getElementById('DataTable');
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.innerText = StoreObj.name;
+  trEl.appendChild(thEl);
+  var tdElTotal = document.createElement('td'); //appends store daily total
+  tdElTotal.innerText = StoreObj.total;
+  trEl.appendChild(tdElTotal);
+  for (var i = 0; i < StoreObj.dailySales.length; i++) {  // appends hourly totals
+    var tdEl = document.createElement('td');
+    tdEl.innerText = String(StoreObj.dailySales[i]);
+    trEl.appendChild(tdEl);
+  }
+  tableEl.appendChild(trEl);
+};
 
 function createStores() {
   for (var i = 0; i < storeData.length; i++){
@@ -91,7 +95,7 @@ function displayDataTable(locations) {
   trEl.appendChild(thEl);
   //loop to add remaining headings based on hourNames
   for (var i = 0; i < hourNames.length; i++) {
-    thEl = document.createElement('th');
+    var thEl = document.createElement('th');
     thEl.innerText = hourNames[i];
     trEl.appendChild(thEl);
   }
