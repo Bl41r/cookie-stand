@@ -32,8 +32,8 @@ div {
   position: absolute;
   width: 960px;
   background: red;  /* set to same color as .right to maintain right bar */
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
 }
 
 .left {
@@ -66,6 +66,7 @@ div {
 }
 
 ul.locations li {
+  margin-top: 15px;
   font-weight: bold;
   font-size: 14pt;
   list-style-type: none;
@@ -83,9 +84,9 @@ h2 {
   margin-top: 40px;
 }
 
-li.addy {
+ul > li.addy {
   margin-bottom: 50px;
-  font-weight: normal;
-  font-size: 14pt;
+  font-weight: lighter;
+  font-size: 12pt;
   font-style: italic;
 }
