@@ -10,3 +10,7 @@ table, td {
 tr:hover {
   background-color: #FFFF37;
 }
+
+td:hover, th:hover {
+  background-color: #FFA341
+}
