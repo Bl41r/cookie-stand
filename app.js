@@ -5,13 +5,12 @@
 
 var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 //note:  8pm removed, because stores close at 8, and thus no sales after close
-var hoursOpen = hourNames.length;
 
 // Function from mdn
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+//gets and fills in sales data for 1 store
 function getDailySales(hours, min, max, avgCookiePerSale) {
   var total = 0;
   var dailySales = [];
@@ -23,7 +22,7 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
   }
   return [hourlyCustomers, dailySales, total];
 };
-
+//gets daily sales for all stores
 function compoundSalesData(locations) {
   for (var loc = 0; loc < locations.length; loc++) {
     locations[loc].getDailySales();
@@ -42,7 +41,7 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
 
   this.getDailySales = function() {
     var SalesData = [];
-    SalesData = getDailySales(hoursOpen, this.minCust, this.maxCust, this.avgCookiesPerSale);
+    SalesData = getDailySales(hourNames.length, this.minCust, this.maxCust, this.avgCookiesPerSale);
     this.hourlyCustomers = SalesData[0];
     this.dailySales = SalesData[1];
     this.total = SalesData[2];
