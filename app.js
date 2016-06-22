@@ -1,11 +1,55 @@
 // Week 2 Lab created on 6/20/16
-// cookie-stand project
+// cookie-stand project - David Smith
 // GitHub: https://github.com/Bl41r/cookie-stand
 /////////////////////////////////////////////////////
-
+// Store owner can modify storeData and hourNames:
+var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, avgCookiePerSale]
+  ['First And Pike', 23, 65, 6.3],
+  ['SeaTac Airport', 3, 24, 1.2],
+  ['Seattle Center', 11, 38, 3.7],
+  ['Capitol Hill', 20, 38, 2.3],
+  ['Alki', 2, 16, 4.6]
+];
 var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-//note:  8pm removed, because stores close at 8, and thus no sales after close
+var open_locations = [];  // Generated in code, leave blank
 
+// Store Object
+var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+  this.dailySales = [];
+  this.hourlyCustomers = [];
+  this.total = 0;
+
+  // Methods
+  this.getDailySales = function() { // method gets sales data for one day
+    var SalesData = [];
+    SalesData = getDailySales(hourNames.length, this.minCust, this.maxCust, this.avgCookiesPerSale);
+    this.hourlyCustomers = SalesData[0];
+    this.dailySales = SalesData[1];
+    this.total = SalesData[2];
+  };
+
+  this.renderData = function() {  // method appends one row to data table in HTML
+    var tableEl = document.getElementById('DataTable');
+    var trEl = document.createElement('tr');
+    var thEl = document.createElement('th');
+    thEl.innerText = this.name;
+    trEl.appendChild(thEl);
+    var tdElTotal = document.createElement('td'); //appends store daily total
+    tdElTotal.innerText = this.total;
+    trEl.appendChild(tdElTotal);
+    for (var i = 0; i < this.dailySales.length; i++) {  // appends hourly totals
+      var tdEl = document.createElement('td');
+      tdEl.innerText = String(this.dailySales[i]);
+      trEl.appendChild(tdEl);
+    }
+    tableEl.appendChild(trEl);
+  };
+};
+// Global Functions
 // Function from mdn
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -29,48 +73,20 @@ function compoundSalesData(locations) {
   }
 }
 
-// Objects
-var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
-  this.name = name;
-  this.minCust = minCust;
-  this.maxCust = maxCust;
-  this.avgCookiesPerSale = avgCookiesPerSale;
-  this.dailySales = [];
-  this.hourlyCustomers = [];
-  this.total = 0;
-
-  this.getDailySales = function() {
-    var SalesData = [];
-    SalesData = getDailySales(hourNames.length, this.minCust, this.maxCust, this.avgCookiesPerSale);
-    this.hourlyCustomers = SalesData[0];
-    this.dailySales = SalesData[1];
-    this.total = SalesData[2];
-  };
-};
-
 function createStores() {
-  FirstAndPike = new Store('First and Pike', 23, 65, 6.3);
-  SeaTac = new Store('SeaTac Airport', 3, 24, 1.2);
-  SeattleCenter = new Store('Seattle Center', 11, 38, 3.7);
-  CapHill = new Store('Capitol Hill', 20, 38, 2.3);
-  Alki = new Store('Alki', 2, 16, 4.6);
+  for (var i = 0; i < storeData.length; i++){
+    var tmpStore = new Store(storeData[i][0], storeData[i][1], storeData[i][2], storeData[i][3]);
+    open_locations.push(tmpStore);
+  }
 }
 
 function displayDataTable(locations) {
-  //make table with id of dataTable
-  var tableEl = document.createElement('table');
-  tableEl.setAttribute('id', 'dataTable');
-  dataEntryPoint = document.getElementById('DataStart');
-  dataEntryPoint.appendChild(tableEl);
-  //add first tr within table
-  trEl = document.createElement('tr');
+  var tableEl = document.getElementById('DataTable');
+  var trEl = document.createElement('tr');
   tableEl.appendChild(trEl);
-  //add th's within tr
-  thEl = document.createElement('th');
-  // thEl.innerText = '(blank space here)';
-  trEl.appendChild(thEl);
-  //add daily total column heading
-  thEl = document.createElement('th');
+  var thEl = document.createElement('th');
+  trEl.appendChild(thEl);  //blank spot
+  thEl = document.createElement('th');    //add daily total column heading
   thEl.innerText = 'Daily Location Total';
   trEl.appendChild(thEl);
   //loop to add remaining headings based on hourNames
@@ -81,22 +97,7 @@ function displayDataTable(locations) {
   }
   //first row done, now loops for all locs
   for (var i = 0; i < open_locations.length; i++) {
-    var trEl = document.createElement('tr');
-    var thEl = document.createElement('th');
-    thEl.innerText = open_locations[i].name;
-    trEl.appendChild(thEl);
-    //add total
-    tdEl = document.createElement('td');
-    tdEl.innerText = String(open_locations[i].total);
-    trEl.appendChild(tdEl);
-    tableEl.appendChild(trEl);
-    //add in dailySales[j] (each hours sales for a store)
-    for (var j = 0; j < open_locations[i].dailySales.length; j++) {
-      var tdEl = document.createElement('td');
-      tdEl.innerText = String(open_locations[i].dailySales[j]);
-      trEl.appendChild(tdEl);
-    }
-    tableEl.appendChild(trEl);
+    open_locations[i].renderData();
   }
   //calc totals row
   totalsRow = [];
@@ -111,7 +112,7 @@ function displayDataTable(locations) {
     }
     totalsRow.push(hourTotal);
   }
-  //display totals row
+  // display totals stretch-goal row
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   thEl.innerText = 'Totals';
@@ -128,7 +129,6 @@ function displayDataTable(locations) {
 };
 
 // Main programming loop
-createStores(); //later: generate stores from an array of data at top
-open_locations = [FirstAndPike, SeaTac, SeattleCenter, CapHill, Alki];
+createStores();
 compoundSalesData(open_locations);
 displayDataTable(open_locations);

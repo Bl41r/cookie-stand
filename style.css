@@ -32,8 +32,9 @@ div {
   position: absolute;
   width: 960px;
   background: red;  /* set to same color as .right to maintain right bar */
-  margin-left: auto;
-  margin-right: auto;
+  margin:0px auto;
+  left: 10%;
+  /*outline: 1px dotted orange;*/
 }
 
 .left {
