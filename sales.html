@@ -7,6 +7,17 @@
 	<body>
     <h1>Sales Data for Pat's Salmon Cookie Stands</h1>
 			<table id="DataTable"></table>
+		<form id="myForm">
+			<label for="storeName">Store Name: </label>
+			<input id="storeName" type="text" name="storeName" size="15" />
+			<label for="min">Minimum Customers Per Hour: </label>
+			<input id="min" type="text" name="min" size="4" />
+			<label for="max">Maximum Customers Per Hour: </label>
+			<input id="max" type="text" name="max" size="4" />
+			<label for="avg">Average Number of Cookies Purchased: </label>
+			<input id="avg" type="text" name="avg" size="4" />
+			<input type="submit" name="submitButton" />
+		</form>
     <script src="app.js"></script>
 	</body>
 </html>

@@ -77,6 +77,7 @@ function renderRow(StoreObj) {
 };
 
 function createStores() {
+  open_locations = [];
   for (var i = 0; i < storeData.length; i++){
     var tmpStore = new Store(storeData[i][0], storeData[i][1], storeData[i][2], storeData[i][3]);
     open_locations.push(tmpStore);
@@ -133,3 +134,25 @@ function displayDataTable(locations) {
 createStores();
 compoundSalesData(open_locations);
 displayDataTable(open_locations);
+
+var myForm = document.getElementById('myForm');
+myForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  var storeName = document.getElementById('storeName');
+  var min = document.getElementById('min');
+  var max = document.getElementById('max');
+  var avg = document.getElementById('avg');
+  var newStore = [];
+  newStore[0] = storeName.value;
+  newStore[1] = parseFloat(min.value);
+  newStore[2] = parseFloat(max.value);
+  newStore[3] = parseFloat(avg.value);
+  storeData.push(newStore);
+  var oldTable = document.getElementById('DataTable');
+  while(oldTable.firstChild) {
+    oldTable.removeChild(oldTable.firstChild);
+  }
+  createStores();
+  compoundSalesData(open_locations);
+  displayDataTable(open_locations);
+});
