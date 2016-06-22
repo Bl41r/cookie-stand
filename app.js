@@ -10,7 +10,7 @@ var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, av
   ['Capitol Hill', 20, 38, 2.3],
   ['Alki', 2, 16, 4.6]
 ];
-var hourNames = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var hourNames = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var open_locations = [];  // Generated in code, leave blank
 
 // Store Object
@@ -37,8 +37,7 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
   };
 };
 // Global Functions
-// Function from mdn
-function getRandomIntInclusive(min, max) {
+function getRandomIntInclusive(min, max) {  // Function from mdn
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 //gets and fills in sales data for 1 store
@@ -66,7 +65,7 @@ function renderRow(StoreObj) {
   var thEl = document.createElement('th');
   thEl.innerText = StoreObj.name;
   trEl.appendChild(thEl);
-  var tdElTotal = document.createElement('td'); //appends store daily total
+  var tdElTotal = document.createElement('td'); // appends store daily total
   tdElTotal.innerText = StoreObj.total;
   trEl.appendChild(tdElTotal);
   for (var i = 0; i < StoreObj.dailySales.length; i++) {  // appends hourly totals
@@ -89,7 +88,7 @@ function displayDataTable(locations) {
   var trEl = document.createElement('tr');
   tableEl.appendChild(trEl);
   var thEl = document.createElement('th');
-  trEl.appendChild(thEl);  //blank spot
+  trEl.appendChild(thEl);             //blank spot
   thEl = document.createElement('th');    //add daily total column heading
   thEl.innerText = 'Daily Location Total';
   trEl.appendChild(thEl);
@@ -99,11 +98,11 @@ function displayDataTable(locations) {
     thEl.innerText = hourNames[i];
     trEl.appendChild(thEl);
   }
-  //first row done, now loops for all locs
+  //first row done, now loop for all locations
   for (var i = 0; i < open_locations.length; i++) {
     open_locations[i].renderData();
   }
-  //calc totals row
+  //calc and display totals row
   totalsRow = [];
   totalsRow[0] = 0;
   for (t = 0; t < open_locations.length; t++) {
@@ -116,7 +115,6 @@ function displayDataTable(locations) {
     }
     totalsRow.push(hourTotal);
   }
-  // display totals stretch-goal row
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   thEl.innerText = 'Totals';
@@ -131,7 +129,6 @@ function displayDataTable(locations) {
   }
   tableEl.appendChild(trEl);
 };
-
 // Main programming loop
 createStores();
 compoundSalesData(open_locations);
