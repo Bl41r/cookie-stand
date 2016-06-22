@@ -17,3 +17,22 @@ tr:hover {
 td:hover, th:hover {
   background-color: #FFA341
 }
+
+input[type="text"] {
+	padding: 5px, 10px;
+}	/* grabs any input that is text type */
+
+input[type="submit"] {
+  margin: 5px;
+	border: none;
+	padding: 8px 22px;
+	border-radius: 3px;
+	color: white;
+	background: #444
+	transition: 750ms all;
+	cursor: pointer;
+}	/* grabs submit button */
+
+input[type="submit"]:hover {
+background: #888;
+}

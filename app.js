@@ -4,6 +4,7 @@
 /////////////////////////////////////////////////////
 // Store owner can modify storeData and hourNames:
 var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, avgCookiePerSale]
+  //ideally, the stores added from forms would be added to an external file and loaded here
   ['First And Pike', 23, 65, 6.3],
   ['SeaTac Airport', 3, 24, 1.2],
   ['Seattle Center', 11, 38, 3.7],
