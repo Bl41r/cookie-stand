@@ -82,8 +82,6 @@ function isNum(input) {
   if ((counter === input.length) && (decimalCount <= 1)) {
     validInt = true;
   }
-  console.log('counter: ', counter);
-  console.log('decimal counter: ', decimalCount);
   return validInt;
 }
 //gets and fills in sales data for 1 store
@@ -141,13 +139,14 @@ function addNewTable(event) {
     newStore[2] = parseFloat(max.value);
     newStore[3] = parseFloat(avg.value);
     storeData.push(newStore);
+    openLocations.push(new Store(newStore[0], newStore[1], newStore[2], newStore[3]));
+    openLocations[openLocations.length - 1].getDailySales();
+    //delete old totals row
     var oldTable = document.getElementById('DataTable');
-    while(oldTable.firstChild) {
-      oldTable.removeChild(oldTable.firstChild);
-    }
-    createStores();
-    compoundSalesData(openLocations);
-    displayDataTable(openLocations);
+    oldTable.removeChild(oldTable.lastChild);
+    //display new tr, gen new totals row
+    renderRow(openLocations[openLocations.length - 1]);
+    printTotals();
   } else {
     alert('Invalid Data Submission');
   }
@@ -171,6 +170,10 @@ function displayDataTable(locations) {
   for (var i = 0; i < openLocations.length; i++) {
     openLocations[i].renderData();
   }
+  printTotals();
+}
+
+function printTotals() {
   //calc and display totals row
   totalsRow = [];
   totalsRow[0] = 0;
@@ -196,8 +199,10 @@ function displayDataTable(locations) {
     tdEl.innerText = totalsRow[i];
     trEl.appendChild(tdEl);
   }
+  var tableEl = document.getElementById('DataTable');
   tableEl.appendChild(trEl);
 }
+
 // Main programming loop
 createStores();
 compoundSalesData(openLocations);
