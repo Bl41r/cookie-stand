@@ -12,7 +12,7 @@ var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, av
   ['Alki', 2, 16, 4.6]
 ];
 var hourNames = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
-var open_locations = [];  // Generated in code, leave blank
+var openLocations = [];  // Generated in code, leave blank
 var myForm = document.getElementById('myForm');
 
 // Store Object
@@ -41,7 +41,7 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
 // Global Functions
 function getRandomIntInclusive(min, max) {  // Function from mdn
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 //validate alphaText
 function isAlphaText(text) {
   var valid = 'abcdefghijklmnopqrstuvwxyz '.split('');
@@ -83,7 +83,7 @@ function isNum(input) {
   console.log('counter: ', counter);
   console.log('decimal counter: ', decimalCount);
   return validInt;
-};
+}
 //gets and fills in sales data for 1 store
 function getDailySales(hours, min, max, avgCookiePerSale) {
   var total = 0;
@@ -95,7 +95,7 @@ function getDailySales(hours, min, max, avgCookiePerSale) {
     total += dailySales[i];
   }
   return [hourlyCustomers, dailySales, total];
-};
+}
 //gets daily sales for all stores
 function compoundSalesData(locations) {
   for (var loc = 0; loc < locations.length; loc++) {
@@ -118,14 +118,14 @@ function renderRow(StoreObj) {
     trEl.appendChild(tdEl);
   }
   tableEl.appendChild(trEl);
-};
+}
 function createStores() {
-  open_locations = [];
+  openLocations = [];
   for (var i = 0; i < storeData.length; i++){
     var tmpStore = new Store(storeData[i][0], storeData[i][1], storeData[i][2], storeData[i][3]);
-    open_locations.push(tmpStore);
+    openLocations.push(tmpStore);
   }
-};
+}
 function addNewTable(event) {
   event.preventDefault();
   var storeName = document.getElementById('storeName');
@@ -147,12 +147,12 @@ function addNewTable(event) {
       oldTable.removeChild(oldTable.firstChild);
     }
     createStores();
-    compoundSalesData(open_locations);
-    displayDataTable(open_locations);
+    compoundSalesData(openLocations);
+    displayDataTable(openLocations);
   } else {
     alert('Invalid Data Submission');
   }
-};
+}
 function displayDataTable(locations) {
   var tableEl = document.getElementById('DataTable');
   var trEl = document.createElement('tr');
@@ -169,19 +169,19 @@ function displayDataTable(locations) {
     trEl.appendChild(thEl);
   }
   //first row done, now loop for all locations
-  for (var i = 0; i < open_locations.length; i++) {
-    open_locations[i].renderData();
+  for (var i = 0; i < openLocations.length; i++) {
+    openLocations[i].renderData();
   }
   //calc and display totals row
   totalsRow = [];
   totalsRow[0] = 0;
-  for (t = 0; t < open_locations.length; t++) {
-    totalsRow[0] += open_locations[t].total;
+  for (t = 0; t < openLocations.length; t++) {
+    totalsRow[0] += openLocations[t].total;
   }
   for (var k = 0; k < hourNames.length; k++) {
     var hourTotal = 0;
-    for (var l = 0; l < open_locations.length; l++) {
-      hourTotal += open_locations[l].dailySales[k];
+    for (var l = 0; l < openLocations.length; l++) {
+      hourTotal += openLocations[l].dailySales[k];
     }
     totalsRow.push(hourTotal);
   }
@@ -198,9 +198,9 @@ function displayDataTable(locations) {
     trEl.appendChild(tdEl);
   }
   tableEl.appendChild(trEl);
-};
+}
 // Main programming loop
 createStores();
-compoundSalesData(open_locations);
-displayDataTable(open_locations);
+compoundSalesData(openLocations);
+displayDataTable(openLocations);
 myForm.addEventListener('submit', addNewTable, false);
