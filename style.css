@@ -80,13 +80,25 @@ header {
   color: #fff;
 }
 
+.inner li:last-child {
+  font-weight: bold;
+}
+
 main {
   margin: 30px auto;
   padding-top: 130px;
   width: 960px;
+  background: #FFE9E5;
 }
 
 #history {
+  width: 100%;
+  text-align: center;
+}
+
+#title {
+  font-size: 60px;
+  font-weight: bolder;
   width: 100%;
   text-align: center;
 }
@@ -119,6 +131,11 @@ h2 {
   margin-bottom: 30px;
 }
 
+.sub_banners li:first-child {
+  color: red;
+  font-weight: bolder;
+}
+
 li span {
   display: inline-block;
   width: 300px;
@@ -147,10 +164,4 @@ footer {
   margin-top: 50px;
   margin-left: 50px;
   color: #fff;
-}
-#title {
-  font-size: 40px;
-  font-weight: bolder;
-  width: 100%;
-  text-align: center;
 }
