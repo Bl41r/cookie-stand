@@ -5,22 +5,34 @@
 		<title>David Smith Week 2 Lab</title>
 	</head>
 	<body>
+		<header>
+  		<div class="inner">
+    		<img src="images/chinook.jpg"/>
+    		<ul>
+					<li><a href="./index.html">Back to index</a></li>
+      		<li>Have questions? <a href="">Contact Support</a></li>
+    		</ul>
+  		</div>
+		</header>
     <h1>Sales Data for Pat's Salmon Cookie Stands</h1>
 		<form id="myForm">
 			<fieldset>
 				<p>Add New Store</p>
 				<label for="storeName">Store Name: </label>
-				<input id="storeName" type="text" name="storeName" size="15" />
-				<label for="min">Minimum Customers Per Hour: </label>
-				<input id="min" type="number" name="min" size="4" />
-				<label for="max">Maximum Customers Per Hour: </label>
-				<input id="max" type="number" name="max" size="4" />
-				<label for="avg">Average Number of Cookies Purchased: </label>
-				<input id="avg" type="number" name="avg" size="4" />
+				<input id="storeName" type="text" name="storeName"/>
+				<label for="min">Min. Customers Per Hour: </label>
+				<input id="min" class="set_width" type="number" name="min"/>
+				<label for="max">Max. Customers Per Hour: </label>
+				<input id="max" class="set_width" type="number" name="max"/>
+				<label for="avg">Average # of Cookies Purchased: </label>
+				<input id="avg" class="set_width" type="number" name="avg"/>
+				<p></p>
 				<input type="submit" name="submitButton" />
 			</fieldset>
 		</form>
+		<p></p>
 		<table id="DataTable"></table>
+		<footer>Codefellows 201</footer>
     <script src="app.js"></script>
 	</body>
 </html>
