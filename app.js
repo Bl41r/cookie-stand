@@ -133,7 +133,13 @@ function addNewTable(event) {
   var max = document.getElementById('max');
   var avg = document.getElementById('avg');
   var newStore = [];
-  if ((isNum(min.value)) && (isNum(max.value)) && (isNum(avg.value)) && (isAlphaText(storeName.value)) && (parseFloat(min.value) <= parseFloat(max.value))) {
+  var alreadyEntered = false;
+  for (var i = 0; i < openLocations.length; i++) {
+    if (storeName.value === openLocations[i].name) {
+      alreadyEntered = true;
+    }
+  }
+  if ((isNum(min.value)) && (isNum(max.value)) && (isNum(avg.value)) && (isAlphaText(storeName.value)) && (parseFloat(min.value) <= parseFloat(max.value)) && !(alreadyEntered)) {
     newStore[0] = storeName.value;
     newStore[1] = parseFloat(min.value);
     newStore[2] = parseFloat(max.value);
