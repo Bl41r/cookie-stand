@@ -5,7 +5,7 @@
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
@@ -55,8 +55,12 @@ body {
 
 /* site style */
 header {
+  top: 0;
   background: #a75433;
-    height: 100px;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  opacity: .9;
 }
 
 .inner {
@@ -78,7 +82,22 @@ header {
 
 main {
   margin: 30px auto;
+  padding-top: 130px;
   width: 960px;
+}
+
+#history {
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 15px;
+}
+
+#history img {
+  margin-top: 15px;
 }
 
 .banner {
@@ -92,6 +111,7 @@ main {
   margin-right: 30px;
   width: 300px;
   height: 400px;
+  text-align: center;
 }
 
 .sub_banners li:last-child {
@@ -99,12 +119,35 @@ main {
   margin-bottom: 30px;
 }
 
-footer {
-  clear: left;
-  height: 150px;
-  background: #888;
+li span {
+  display: inline-block;
+  width: 300px;
+  height: 55px;
 }
 
+footer {
+  clear: left;
+  height: 130px;
+  width: 100%;
+  background: #a75433;
+}
+
+.footer_inner {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.footer_inner img {
+  float: left;
+  margin-top: 15px;
+}
+
+.footer_inner ul li {
+  display: inline-block;
+  margin-top: 50px;
+  margin-left: 50px;
+  color: #fff;
+}
 #title {
   font-size: 40px;
   font-weight: bolder;
