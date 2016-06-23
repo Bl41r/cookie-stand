@@ -13,6 +13,7 @@ var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, av
 ];
 var hourNames = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var open_locations = [];  // Generated in code, leave blank
+var myForm = document.getElementById('myForm');
 
 // Store Object
 var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
@@ -40,7 +41,49 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
 // Global Functions
 function getRandomIntInclusive(min, max) {  // Function from mdn
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
+//validate alphaText
+function isAlphaText(text) {
+  var valid = 'abcdefghijklmnopqrstuvwxyz '.split('');
+  text = text.split('');
+  var counter = 0;
+  var validText = false;
+  for (var i = 0; i < text.length; i++) {
+    for (var v = 0; v < valid.length; v++) {
+      if (text[i] === valid[v]) {
+        counter++;
+      }
+    }
+  }
+  if ((counter === text.length) && (text[text.length - 1] !== ' ')) {
+    validText = true;
+  }
+  return validText;
+};
+//validate integer
+function isNum(input) {
+  var valid = '0123456789.'.split('');
+  input = input.split('');
+  var counter = 0;
+  var decimalCount = 0;
+  var validInt = false;
+  for (var i = 0; i < input.length; i++) {
+    for (var v = 0; v < valid.length; v++) {
+      if (input[i] === valid[v]) {
+        counter++;
+        if (input[i] === '.') {
+          decimalCount++;
+        }
+      }
+    }
+  }
+  if ((counter === input.length) && (decimalCount <= 1)) {
+    validInt = true;
+  }
+  console.log('counter: ', counter);
+  console.log('decimal counter: ', decimalCount);
+  return validInt;
+};
 //gets and fills in sales data for 1 store
 function getDailySales(hours, min, max, avgCookiePerSale) {
   var total = 0;
@@ -76,15 +119,40 @@ function renderRow(StoreObj) {
   }
   tableEl.appendChild(trEl);
 };
-
 function createStores() {
   open_locations = [];
   for (var i = 0; i < storeData.length; i++){
     var tmpStore = new Store(storeData[i][0], storeData[i][1], storeData[i][2], storeData[i][3]);
     open_locations.push(tmpStore);
   }
-}
-
+};
+function addNewTable(event) {
+  event.preventDefault();
+  var storeName = document.getElementById('storeName');
+  var min = document.getElementById('min');
+  var max = document.getElementById('max');
+  var avg = document.getElementById('avg');
+  var newStore = [];
+  newStore[0] = storeName.value;
+  newStore[1] = min.value;
+  newStore[2] = max.value;
+  newStore[3] = avg.value;
+  if ((isNum(newStore[1])) && (isNum(newStore[2])) && (isNum(newStore[3])) && (isAlphaText(newStore[0]))) {
+    newStore[1] = parseFloat(newStore[1]);
+    newStore[2] = parseFloat(newStore[2]);
+    newStore[3] = parseFloat(newStore[3]);
+    storeData.push(newStore);
+    var oldTable = document.getElementById('DataTable');
+    while(oldTable.firstChild) {
+      oldTable.removeChild(oldTable.firstChild);
+    }
+    createStores();
+    compoundSalesData(open_locations);
+    displayDataTable(open_locations);
+  } else {
+    alert('Invalid Data Submission');
+  }
+};
 function displayDataTable(locations) {
   var tableEl = document.getElementById('DataTable');
   var trEl = document.createElement('tr');
@@ -135,25 +203,4 @@ function displayDataTable(locations) {
 createStores();
 compoundSalesData(open_locations);
 displayDataTable(open_locations);
-
-var myForm = document.getElementById('myForm');
-myForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  var storeName = document.getElementById('storeName');
-  var min = document.getElementById('min');
-  var max = document.getElementById('max');
-  var avg = document.getElementById('avg');
-  var newStore = [];
-  newStore[0] = storeName.value;
-  newStore[1] = parseFloat(min.value);
-  newStore[2] = parseFloat(max.value);
-  newStore[3] = parseFloat(avg.value);
-  storeData.push(newStore);
-  var oldTable = document.getElementById('DataTable');
-  while(oldTable.firstChild) {
-    oldTable.removeChild(oldTable.firstChild);
-  }
-  createStores();
-  compoundSalesData(open_locations);
-  displayDataTable(open_locations);
-});
+myForm.addEventListener('submit', addNewTable, false);
