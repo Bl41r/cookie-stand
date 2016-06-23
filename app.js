@@ -52,6 +52,7 @@ function isAlphaText(text) {
     for (var v = 0; v < valid.length; v++) {
       if (text[i] === valid[v]) {
         counter++;
+        break;
       }
     }
   }
@@ -74,6 +75,7 @@ function isNum(input) {
         if (input[i] === '.') {
           decimalCount++;
         }
+        break;
       }
     }
   }
