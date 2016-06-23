@@ -41,6 +41,49 @@ var Store = function(name, minCust, maxCust, avgCookiesPerSale) {
 function getRandomIntInclusive(min, max) {  // Function from mdn
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+//validate alphaText
+function isAlphaText(text) {
+  var valid = 'abcdefghijklmnopqrstuvwxyz '.split('');
+  text = text.split('');
+  var counter = 0;
+  var validText = false;
+  for (var i = 0; i < text.length; i++) {
+    for (var v = 0; v < valid.length; v++) {
+      if (text[i] === valid[v]) {
+        counter++;
+      }
+    }
+  }
+  if ((counter === text.length) && (text[text.length - 1] !== ' ')) {
+    validText = true;
+  }
+  return validText;
+}
+//validate integer
+function isNum(input) {
+  var valid = '0123456789.'.split('');
+  input = input.split('');
+  var counter = 0;
+  var decimalCount = 0;
+  var validInt = false;
+  for (var i = 0; i < input.length; i++) {
+    for (var v = 0; v < valid.length; v++) {
+      if (input[i] === valid[v]) {
+        counter++;
+        if (input[i] === '.') {
+          decimalCount++;
+        }
+      }
+    }
+  }
+  if ((counter === input.length) && (decimalCount <= 1)) {
+    validInt = true;
+  }
+  console.log('counter: ', counter);
+  console.log('decimal counter: ', decimalCount);
+  return validInt;
+}
+
 //gets and fills in sales data for 1 store
 function getDailySales(hours, min, max, avgCookiePerSale) {
   var total = 0;
@@ -136,6 +179,7 @@ createStores();
 compoundSalesData(open_locations);
 displayDataTable(open_locations);
 
+//handle form data
 var myForm = document.getElementById('myForm');
 myForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -145,15 +189,22 @@ myForm.addEventListener('submit', function(event) {
   var avg = document.getElementById('avg');
   var newStore = [];
   newStore[0] = storeName.value;
-  newStore[1] = parseFloat(min.value);
-  newStore[2] = parseFloat(max.value);
-  newStore[3] = parseFloat(avg.value);
-  storeData.push(newStore);
-  var oldTable = document.getElementById('DataTable');
-  while(oldTable.firstChild) {
-    oldTable.removeChild(oldTable.firstChild);
+  newStore[1] = min.value;
+  newStore[2] = max.value;
+  newStore[3] = avg.value;
+  if ((isNum(newStore[1])) && (isNum(newStore[2])) && (isNum(newStore[3])) && (isAlphaText(newStore[0]))) {
+    newStore[1] = parseFloat(newStore[1]);
+    newStore[2] = parseFloat(newStore[2]);
+    newStore[3] = parseFloat(newStore[3]);
+    storeData.push(newStore);
+    var oldTable = document.getElementById('DataTable');
+    while(oldTable.firstChild) {
+      oldTable.removeChild(oldTable.firstChild);
+    }
+    createStores();
+    compoundSalesData(open_locations);
+    displayDataTable(open_locations);
+  } else {
+    alert('Invalid Data Submission');
   }
-  createStores();
-  compoundSalesData(open_locations);
-  displayDataTable(open_locations);
 });
