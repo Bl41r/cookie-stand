@@ -140,6 +140,7 @@ h2 {
 .sub_banners li:first-child {
   color: red;
   font-weight: bolder;
+  cursor: pointer;
   animation-iteration-count: 10;
   animation-name: buy;
   animation-duration: 3s;
