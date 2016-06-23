@@ -51,6 +51,12 @@ table {
 body {
   font-family: Helvetica;
   font-size: 18px;
+  background-color: #FFF9E0;
+}
+
+@keyframes buy {
+  from {color: red;}
+    to {color: yellow;}
 }
 
 /* site style */
@@ -114,7 +120,7 @@ h2 {
 
 .banner {
   margin-bottom: 30px;
-  width: 960px;
+  width: 930px;
   height: auto;
 }
 
@@ -134,6 +140,9 @@ h2 {
 .sub_banners li:first-child {
   color: red;
   font-weight: bolder;
+  animation-iteration-count: 10;
+  animation-name: buy;
+  animation-duration: 3s;
 }
 
 li span {
