@@ -44,7 +44,7 @@ function getRandomIntInclusive(min, max) {  // Function from mdn
 }
 //validate alphaText
 function isAlphaText(text) {
-  var valid = 'abcdefghijklmnopqrstuvwxyz '.split('');
+  var valid = 'abcdefghijklmnopqrstuvwxyz -'.split('');
   text = text.split('');
   var counter = 0;
   var validText = false;
@@ -133,14 +133,11 @@ function addNewTable(event) {
   var max = document.getElementById('max');
   var avg = document.getElementById('avg');
   var newStore = [];
-  newStore[0] = storeName.value;
-  newStore[1] = min.value;
-  newStore[2] = max.value;
-  newStore[3] = avg.value;
-  if ((isNum(newStore[1])) && (isNum(newStore[2])) && (isNum(newStore[3])) && (isAlphaText(newStore[0]))) {
-    newStore[1] = parseFloat(newStore[1]);
-    newStore[2] = parseFloat(newStore[2]);
-    newStore[3] = parseFloat(newStore[3]);
+  if ((isNum(min.value)) && (isNum(max.value)) && (isNum(avg.value)) && (isAlphaText(storeName.value)) && (parseFloat(min.value) <= parseFloat(max.value))) {
+    newStore[0] = storeName.value;
+    newStore[1] = parseFloat(min.value);
+    newStore[2] = parseFloat(max.value);
+    newStore[3] = parseFloat(avg.value);
     storeData.push(newStore);
     var oldTable = document.getElementById('DataTable');
     while(oldTable.firstChild) {
