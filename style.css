@@ -55,7 +55,7 @@ body {
 
 /* site style */
 header {
-  background: #444;
+  background: #a75433;
     height: 100px;
 }
 
@@ -90,6 +90,8 @@ main {
 .sub_banners li {
   float: left;
   margin-right: 30px;
+  width: 300px;
+  height: 400px;
 }
 
 .sub_banners li:last-child {
@@ -101,4 +103,11 @@ footer {
   clear: left;
   height: 150px;
   background: #888;
+}
+
+#title {
+  font-size: 40px;
+  font-weight: bolder;
+  width: 100%;
+  text-align: center;
 }
