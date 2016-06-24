@@ -180,8 +180,7 @@ function displayDataTable(locations) {
   printTotals();
 }
 
-function printTotals() {
-  //calc and display totals row
+function printTotals() {  //calc and display totals row
   var totalsRow = [];
   totalsRow[0] = 0;
   for (var t = 0; t < openLocations.length; t++) {
@@ -194,20 +193,24 @@ function printTotals() {
     }
     totalsRow.push(hourTotal);
   }
-  var trEl = document.createElement('tr');
-  var thEl = document.createElement('th');
-  thEl.innerText = 'Totals';
-  trEl.appendChild(thEl);
-  thEl = document.createElement('td');
-  thEl.innerText = String(totalsRow[0]);
-  trEl.appendChild(thEl);
-  for (var i = 1; i < totalsRow.length; i++) {
-    var tdEl = document.createElement('td');
-    tdEl.innerText = totalsRow[i];
-    trEl.appendChild(tdEl);
-  }
   var tableEl = document.getElementById('DataTable');
+  var trEl = document.createElement('tr');
   tableEl.appendChild(trEl);
+  // var trEl = buildElement('tr', '', tableEl, true);
+  buildElement('th', 'Totals', trEl, false);
+  buildElement('td', totalsRow[0], trEl, false);
+  for (var i = 1; i < totalsRow.length; i++) {
+    buildElement('td', totalsRow[i], trEl, false);
+  }
+}
+
+function buildElement(elType, content, parentNode, returnVal) {
+  var tmp = document.createElement(elType);
+  tmp.textContent = content;
+  parentNode.appendChild(tmp);
+  if (returnVal) {
+    return tmp;
+  }
 }
 
 // Main programming loop
