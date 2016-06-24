@@ -182,9 +182,9 @@ function displayDataTable(locations) {
 
 function printTotals() {
   //calc and display totals row
-  totalsRow = [];
+  var totalsRow = [];
   totalsRow[0] = 0;
-  for (t = 0; t < openLocations.length; t++) {
+  for (var t = 0; t < openLocations.length; t++) {
     totalsRow[0] += openLocations[t].total;
   }
   for (var k = 0; k < hourNames.length; k++) {
