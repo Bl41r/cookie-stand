@@ -61,7 +61,7 @@ function isAlphaText(text) {
   }
   return validText;
 };
-//validate integer
+//validate number entered
 function isNum(input) {
   var valid = '0123456789.'.split('');
   input = input.split('');
