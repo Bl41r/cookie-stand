@@ -44,7 +44,7 @@ function getRandomIntInclusive(min, max) {  // Function from mdn
 }
 //validate alphaText
 function isAlphaText(text) {
-  var valid = 'abcdefghijklmnopqrstuvwxyz -'.split('');
+  var valid = 'etaoinshrdlcum- wfgypbvkjxq'.split('');
   text = text.toLowerCase().split('');
   var counter = 0;
   var validText = false;
