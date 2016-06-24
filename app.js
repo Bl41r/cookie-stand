@@ -126,7 +126,7 @@ function createStores() {
     openLocations.push(tmpStore);
   }
 }
-function addNewTable(event) {
+function addNewStore(event) {
   event.preventDefault();
   var storeName = document.getElementById('storeName');
   var min = document.getElementById('min');
@@ -210,7 +210,20 @@ function printTotals() {
 }
 
 // Main programming loop
-createStores();
-compoundSalesData(openLocations);
-displayDataTable(openLocations);
-myForm.addEventListener('submit', addNewTable, false);
+function main() {
+  if (document.getElementById('DataTable')) { // if table exists, remove it, create new one
+    var tableEl = document.getElementById('DataTable');
+    var parent = tableEl.parentNode;
+    parent.removeChild(tableEl);
+    tableEl = document.createElement('table');
+    tableEl.setAttribute('id', 'DataTable');
+    parent.appendChild(tableEl);
+  }
+  createStores();
+  compoundSalesData(openLocations);
+  displayDataTable(openLocations);
+}
+
+main();
+document.getElementById('genSalesBtn').addEventListener('click', main, false);  // not working..
+myForm.addEventListener('submit', addNewStore, false);
