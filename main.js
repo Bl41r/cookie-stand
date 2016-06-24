@@ -1,3 +1,5 @@
+'use strict';
+
 var myForm = document.getElementById('myForm');
 var buyLink = document.getElementById('buy');
 

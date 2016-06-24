@@ -2,6 +2,7 @@
 // cookie-stand project - David Smith
 // GitHub: https://github.com/Bl41r/cookie-stand
 /////////////////////////////////////////////////////
+'use strict';
 // Store owner can modify storeData and hourNames:
 var storeData = [ // format: ['store name', minCustomers/hr, maxCustomers/hr, avgCookiePerSale]
   //ideally, the stores added from forms would be added to an external file and loaded here
