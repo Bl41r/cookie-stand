@@ -138,6 +138,19 @@ li span {
 	cursor: pointer;
 }
 
+@keyframes socialeffect {
+  from {border-radius: 100%;
+				transform: scale(1);}
+    to {border-radius: 0%;
+				transform:scale(1.5);}
+}
+
+.inner li img:hover {
+	cursor: pointer;
+	animation-name: socialeffect;
+	animation-duration: 1.5s;
+}
+
 .banner {
   margin-bottom: 30px;
   width: 930px;

@@ -15,6 +15,7 @@ header {
 
 a {
   color: #FFE9E5;
+  text-decoration: none;
 }
 
 h1 {
@@ -26,6 +27,10 @@ h1 {
 ol, ul {
 	list-style: none;
   display: inline-block;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .inner {
