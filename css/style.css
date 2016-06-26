@@ -69,6 +69,7 @@ header {
 }
 
 main {
+	font-weight: bold;
 	margin: 30px auto;
 	padding-top: 130px;
 	width: 960px;
@@ -87,10 +88,6 @@ footer {
 	background: #a75433;
 }
 /* site style */
-@keyframes buy {
-	from {color: red;}
-	to {color: yellow;}
-}
 
 #history {
 	width: 100%;
@@ -98,12 +95,12 @@ footer {
 }
 
 #title {
-	font-size: 70px;
+	font-size: 80px;
+	margin-bottom: 100px;
 	font-weight: bolder;
 	width: 100%;
 	text-align: center;
 }
-
 
 #history img {
 	margin-top: 15px;
@@ -151,6 +148,11 @@ img.socialeffect {
 				transform:scale(1.4);}
 }
 
+@keyframes buy {
+	from {color: red;}
+	to {color: yellow;}
+}
+
 .inner li img:hover {
 	cursor: pointer;
 	animation-name: socialeffect;
@@ -158,9 +160,12 @@ img.socialeffect {
 }
 
 .banner {
+	position: fixed;
   margin-bottom: 30px;
-  width: 930px;
+	margin-top: 0px;
+  width: 935px;
   height: auto;
+	opacity: .2;
 }
 
 .sub_banners li {
