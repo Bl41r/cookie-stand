@@ -88,7 +88,6 @@ footer {
 	background: #a75433;
 }
 /* site style */
-
 #history {
 	width: 100%;
 	text-align: center;
@@ -148,11 +147,6 @@ img.socialeffect {
 				transform:scale(1.4);}
 }
 
-@keyframes buy {
-	from {color: red;}
-	to {color: yellow;}
-}
-
 .inner li img:hover {
 	cursor: pointer;
 	animation-name: socialeffect;
@@ -181,6 +175,11 @@ img.socialeffect {
   margin-bottom: 30px;
 }
 
+@keyframes buy {
+	from {color: red;}
+	to {color: yellow;}
+}
+
 .sub_banners li:first-child {
   color: red;
   font-weight: bolder;
@@ -189,6 +188,7 @@ img.socialeffect {
   animation-name: buy;
   animation-duration: 1s;
 }
+
 
 .footer_inner {
   width: 960px;
