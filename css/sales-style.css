@@ -44,7 +44,7 @@ ol, ul {
   color: #fff;
 }
 
-fieldset {
+#myForm {
   background: #a75433;
   color: white;
   text-align: center;
@@ -60,7 +60,7 @@ p {
 }
 
 table {
-  margin: 0 auto 60px auto;
+  margin: 0 auto 30px auto;
   width: 960px;
   height: 80%;
 }
@@ -116,9 +116,33 @@ input[type="submit"]:hover {
 background: green;
 }
 
+#gen {
+  text-align: center;
+}
+
+#genSalesBtn:hover {
+  background: green;
+}
+
+#genSalesBtn {
+  margin: 5px;
+	border: none;
+	padding: 8px 22px;
+	border-radius: 3px;
+	color: white;
+	background: lightgreen;
+	transition: 750ms all;
+	cursor: pointer;
+  font-weight: bold;
+  font-size: 120%;
+}
+
 footer {
-text-align: center;
-height: 20px;
-width: 100%;
-background: #a75433;
+  text-align: center;
+  height: 25px;
+  background: #a75433;
+}
+
+footer p {
+  height: auto;
 }

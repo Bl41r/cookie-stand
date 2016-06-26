@@ -45,32 +45,78 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*-----------------------------------*/
-
+/*-------------*/
 /* base styles */
 body {
-  font-family: Helvetica;
+  font-family: 'Poiret One', cursive;
   font-size: 18px;
   background-color: #FFF9E0;
 }
 
-@keyframes buy {
-  from {color: red;}
-    to {color: yellow;}
+a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 18px;
 }
 
-/* site style */
 header {
-  top: 0;
-  background: #a75433;
-  height: 100px;
-  position: fixed;
-  width: 100%;
-  opacity: .95;
+	top: 0;
+	background: #a75433;
+	height: 100px;
+	position: fixed;
+	width: 100%;
+	opacity: .95;
+}
+
+main {
+	margin: 30px auto;
+	padding-top: 130px;
+	width: 960px;
+	background: #FFE9E5;
+}
+
+h2 {
+	font-size: 30px;
+	margin: 15px;
+}
+
+footer {
+	clear: left;
+	height: 130px;
+	width: 100%;
+	background: #a75433;
+}
+/* site style */
+@keyframes buy {
+	from {color: red;}
+	to {color: yellow;}
+}
+
+#history {
+	width: 100%;
+	text-align: center;
+}
+
+#title {
+	font-size: 70px;
+	font-weight: bolder;
+	width: 100%;
+	text-align: center;
+}
+
+
+#history img {
+	margin-top: 15px;
+}
+
+li span {
+	display: inline-block;
+	width: 300px;
+	height: 52px;
 }
 
 .inner {
-  width: 960px;
+  width: 930px;
   margin: 0 auto;
 }
 
@@ -84,38 +130,12 @@ header {
   margin-left: 50px;
   margin-top: 40px;
   color: #fff;
+	font-weight: bold;
 }
 
-.inner li:last-child {
-  font-weight: bold;
-}
-
-main {
-  margin: 30px auto;
-  padding-top: 130px;
-  width: 960px;
-  background: #FFE9E5;
-}
-
-#history {
-  width: 100%;
-  text-align: center;
-}
-
-#title {
-  font-size: 60px;
-  font-weight: bolder;
-  width: 100%;
-  text-align: center;
-}
-
-h2 {
-  font-size: 30px;
-  margin: 15px;
-}
-
-#history img {
-  margin-top: 15px;
+.inner ul li:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .banner {
@@ -143,20 +163,7 @@ h2 {
   cursor: pointer;
   animation-iteration-count: infinite;
   animation-name: buy;
-  animation-duration: .5s;
-}
-
-li span {
-  display: inline-block;
-  width: 300px;
-  height: 55px;
-}
-
-footer {
-  clear: left;
-  height: 130px;
-  width: 100%;
-  background: #a75433;
+  animation-duration: 1s;
 }
 
 .footer_inner {
@@ -174,4 +181,5 @@ footer {
   margin-top: 50px;
   margin-left: 50px;
   color: #fff;
+	font-weight: bold;
 }
