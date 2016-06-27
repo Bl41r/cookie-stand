@@ -229,5 +229,5 @@ function main() {
 }
 
 main();
-document.getElementById('genSalesBtn').addEventListener('click', main, false);  // not working..
+document.getElementById('genSalesBtn').addEventListener('click', main, false);
 myForm.addEventListener('submit', addNewStore, false);

@@ -5,10 +5,44 @@
 		<title>Order Form</title>
 	</head>
 	<body>
-    <h1>Order Form</h1>
-    <form id=orderForm>
+		<header>
+  		<div class="inner">
+    		<img src="images/chinook.jpg"/>
+    		<ul>
+					<li><a href="./index.html">Back to index</a></li>
+      		<li>Have questions? <a href="">Contact Support</a></li>
+    		</ul>
+  		</div>
+		</header>
+    <h1>Pam's Cookie Order Form</h1>
+    <form id="orderForm">
       <fieldset>
+				<label for="name">Name: </label>
+				<input id="name" type="text" name="name"/>
+				<p></p>
+				<label for="addy">Address: </label>
+				<input id="addy" type="text" name="addy" required="required"/>
+				<label for="city">City, State: </label>
+				<input id="city" type="text" name="city" required="required"/>
+				<label for="zip">Zip: </label>
+				<input id="zip" type="text" name="zip" required="required" maxlength="5" pattern="[0-9]*"/>
+				<p></p>
+				<p>Payment Method</p>
+				<select name="cardtype" id="cardtype">
+					<option value="visa">Visa</option>
+					<option value="mc">Mastercard</option>
+					<option value="amex">American Express</option>
+				<select>
+				<label for="number">CC# (no dashes): </label>
+				<input id="cc" type="text" name="cc" required="required" pattern="[0-9]*"/>
+				<label for="Exp Date">Expiration Date (mmyy): </label>
+				<input id="exp" type="text" name="exp" required="required" maxlength="4" pattern="[0-9]*"/>
+				<label for="quantity">Quantity: </label>
+				<input id="q" type="text" name="q" required="required" maxlength="4" pattern="[0-9]*"/>
+				<p></p>
+				<input type="submit" name="submitButton"/>
       </fieldset>
     </form>
+		<script src="js/orderform.js"></script>
 	</body>
 </html>
