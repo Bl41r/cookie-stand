@@ -5,10 +5,43 @@
 		<title>Order Form</title>
 	</head>
 	<body>
+		<header>
+  		<div class="inner">
+    		<img src="images/chinook.jpg"/>
+    		<ul>
+					<li><a href="./index.html">Back to index</a></li>
+      		<li>Have questions? <a href="">Contact Support</a></li>
+    		</ul>
+  		</div>
+		</header>
     <h1>Order Form</h1>
     <form id=orderForm>
       <fieldset>
+				<p>Order Cookies!</p>
+				<label for="name">Name: </label>
+				<input id="name" type="text" name="name"/>
+				<p></p>
+				<label for="addy">Address: </label>
+				<input id="addy" type="text" name="addy"/>
+				<label for="city">City, State: </label>
+				<input id="city" type="text" name="addy"/>
+				<label for="zip">Zip: </label>
+				<input id="zip" type="text" name="addy"/>
+				<p>Payment Method</p>
+				<select name="cardtype">
+					<option value="visa">Visa</option>
+					<option value="mc">Mastercard</option>
+					<option value="amex">American Express</option>
+				<select>
+
+				<label for="number">CC#: </label>
+				<input id="number" type="text" name="number"/>
+				<label for="Exp Date">Expiration Date: </label>
+				<input id="exp" type="text" name="exp"/>
+				<p></p>
+				<input type="submit" name="submitButton"/>
       </fieldset>
     </form>
+		<script src="js/orderform.js"
 	</body>
 </html>
