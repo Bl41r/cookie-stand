@@ -14,19 +14,19 @@
     		</ul>
   		</div>
 		</header>
-    <h1>Order Form</h1>
+    <h1>Pam's Cookie Order Form</h1>
     <form id="orderForm">
       <fieldset>
-				<p>Order Cookies!</p>
 				<label for="name">Name: </label>
 				<input id="name" type="text" name="name"/>
 				<p></p>
 				<label for="addy">Address: </label>
 				<input id="addy" type="text" name="addy" required="required"/>
 				<label for="city">City, State: </label>
-				<input id="city" type="text" name="addy" required="required"/>
+				<input id="city" type="text" name="city" required="required"/>
 				<label for="zip">Zip: </label>
-				<input id="zip" type="text" name="addy" required="required"/>
+				<input id="zip" type="text" name="zip" required="required" maxlength="5" pattern="[0-9]*"/>
+				<p></p>
 				<p>Payment Method</p>
 				<select name="cardtype" id="cardtype">
 					<option value="visa">Visa</option>
@@ -34,9 +34,11 @@
 					<option value="amex">American Express</option>
 				<select>
 				<label for="number">CC# (no dashes): </label>
-				<input id="number" type="text" name="number" required="required"/>
+				<input id="cc" type="text" name="cc" required="required" pattern="[0-9]*"/>
 				<label for="Exp Date">Expiration Date (mmyy): </label>
-				<input id="exp" type="text" name="exp" required="required" maxlength="4"/>
+				<input id="exp" type="text" name="exp" required="required" maxlength="4" pattern="[0-9]*"/>
+				<label for="quantity">Quantity: </label>
+				<input id="q" type="text" name="q" required="required" maxlength="4" pattern="[0-9]*"/>
 				<p></p>
 				<input type="submit" name="submitButton"/>
       </fieldset>
