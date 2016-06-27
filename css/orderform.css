@@ -79,3 +79,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
 background: green;
 }
+
+#exp {
+  width: 40px;
+}
