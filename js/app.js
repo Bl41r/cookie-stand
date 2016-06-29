@@ -45,7 +45,7 @@ function getRandomIntInclusive(min, max) {  // Function from mdn
 }
 //validate alphaText
 function isAlphaText(text) {
-  var valid = 'etaoinshrdlcum- wfgypbvkjxq'.split('');
+  var valid = 'etaoinshrdlcmu- wfgypbvkjxq'.split('');
   text = text.toLowerCase().split('');
   var counter = 0;
   var validText = false;
@@ -127,19 +127,22 @@ function createStores() {
     openLocations.push(tmpStore);
   }
 }
+
 function addNewStore(event) {
   event.preventDefault();
+
   var storeName = document.getElementById('storeName');
   var min = document.getElementById('min');
   var max = document.getElementById('max');
   var avg = document.getElementById('avg');
   var newStore = [];
   var alreadyEntered = false;
-  for (var i = 0; i < openLocations.length; i++) {
+
+  for (var i = 0; i < openLocations.length; i++) {  //store already entered check
     if (storeName.value === openLocations[i].name) {
       alreadyEntered = true;
     }
-  }
+  } //check for proper values entered:
   if ((isNum(min.value)) && (isNum(max.value)) && (isNum(avg.value)) && (isAlphaText(storeName.value)) && (parseFloat(min.value) <= parseFloat(max.value)) && !(alreadyEntered)) {
     newStore[0] = storeName.value;
     newStore[1] = parseFloat(min.value);
@@ -158,20 +161,16 @@ function addNewStore(event) {
     alert('Invalid Data Submission');
   }
 }
+
 function displayDataTable(locations) {
   var tableEl = document.getElementById('DataTable');
-  var trEl = document.createElement('tr');
-  tableEl.appendChild(trEl);
-  var thEl = document.createElement('th');
-  trEl.appendChild(thEl);             //blank spot
-  thEl = document.createElement('th');    //add daily total column heading
-  thEl.innerText = 'Daily Location Total';
-  trEl.appendChild(thEl);
+  var trEl = buildElement('tr', '', tableEl, true);
+  buildElement('th', '', trEl, false);   //blank spot
+  buildElement('th', 'Daily Location Total', trEl, false);
+
   //loop to add remaining headings based on hourNames
   for (var i = 0; i < hourNames.length; i++) {
-    var thEl = document.createElement('th');
-    thEl.innerText = hourNames[i];
-    trEl.appendChild(thEl);
+    buildElement('th', hourNames[i], trEl, false);
   }
   //first row done, now loop for all locations
   for (var i = 0; i < openLocations.length; i++) {
@@ -194,9 +193,7 @@ function printTotals() {  //calc and display totals row
     totalsRow.push(hourTotal);
   }
   var tableEl = document.getElementById('DataTable');
-  var trEl = document.createElement('tr');
-  tableEl.appendChild(trEl);
-  // var trEl = buildElement('tr', '', tableEl, true);
+  var trEl = buildElement('tr', '', tableEl, true);
   buildElement('th', 'Totals', trEl, false);
   buildElement('td', totalsRow[0], trEl, false);
   for (var i = 1; i < totalsRow.length; i++) {
@@ -206,7 +203,9 @@ function printTotals() {  //calc and display totals row
 
 function buildElement(elType, content, parentNode, returnVal) {
   var tmp = document.createElement(elType);
-  tmp.textContent = content;
+  if (content) {
+    tmp.textContent = content;
+  }
   parentNode.appendChild(tmp);
   if (returnVal) {
     return tmp;

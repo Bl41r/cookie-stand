@@ -88,6 +88,14 @@ footer {
 	background: #a75433;
 }
 /* site style */
+
+li span {
+	display: inline-block;
+	width: 300px;
+	height: 52px;
+}
+
+
 #history {
 	width: 100%;
 	text-align: center;
@@ -105,41 +113,6 @@ footer {
 	margin-top: 15px;
 }
 
-li span {
-	display: inline-block;
-	width: 300px;
-	height: 52px;
-}
-
-.inner {
-  width: 930px;
-  margin: 0 auto;
-}
-
-.inner img {
-  float: left;
-  margin-top: 15px;
-}
-
-img.socialeffect {
-	margin-top: -10px;
-	float: right;
-}
-
-.inner ul li {
-  display: inline-block;
-	float: left;
-  margin-left: 50px;
-	margin-top: 45px;
-  color: #fff;
-	font-weight: bold;
-}
-
-.inner ul li:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
 @keyframes socialeffect {
   from {border-radius: 100%;
 				transform: scale(1);}
@@ -147,6 +120,35 @@ img.socialeffect {
 				transform:scale(1.4);}
 }
 
+@keyframes buy {
+	from {color: red;}
+	to {color: yellow;}
+}
+
+.inner {
+	width: 930px;
+	margin: 0 auto;
+}
+
+.inner img {
+	float: left;
+	margin-top: 15px;
+}
+
+
+.inner ul li {
+	display: inline-block;
+	float: left;
+	margin-left: 50px;
+	margin-top: 45px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.inner ul li:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
 .inner li img:hover {
 	cursor: pointer;
 	animation-name: socialeffect;
@@ -175,10 +177,6 @@ img.socialeffect {
   margin-bottom: 30px;
 }
 
-@keyframes buy {
-	from {color: red;}
-	to {color: yellow;}
-}
 
 .sub_banners li:first-child {
   color: red;
@@ -188,7 +186,6 @@ img.socialeffect {
   animation-name: buy;
   animation-duration: 1s;
 }
-
 
 .footer_inner {
   width: 960px;
@@ -206,4 +203,9 @@ img.socialeffect {
   margin-left: 50px;
   color: #fff;
 	font-weight: bold;
+}
+
+img.socialeffect {
+	margin-top: -10px;
+	float: right;
 }

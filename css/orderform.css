@@ -57,9 +57,6 @@ fieldset {
   text-align: left;
 }
 
-#name {
-  margin-top: 20px;
-}
 
 p{
   margin-left: 20px
@@ -130,6 +127,18 @@ a:hover {
   text-align: center;
 }
 
+#name {
+	margin-top: 20px;
+}
+
+#exp, #q {
+	width: 40px;
+}
+
+#zip {
+	width: 70px;
+}
+
 input[type="text"] {
 	padding: 5px, 10px;
 }	/* grabs any input that is text type */
@@ -149,12 +158,4 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
 background: green;
-}
-
-#exp, #q {
-  width: 40px;
-}
-
-#zip {
-  width: 70px;
 }
